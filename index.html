@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berrylush Search Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        #search-input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #AE8625;
+            border-radius: 5px;
+        }
+
+        #search-btn {
+            padding: 10px;
+            background-color: #AE8625;
+             border: 2px solid #AE8625;
+            color: black;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #search-btn:hover {
+            background: linear-gradient(to right, #D3A745, #FAF49E);
+            color: black;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 18px;
+            border: 2px solid #AE8625;
+            background-color: #AE8625;
+            color: black;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover {
+            background: linear-gradient(to right, #D3A745, #FAF49E);
+            color: black;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 15px;
+            border: 2px solid #AE8625;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(0.9);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card p {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #AE8625;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 19px;
+            font-weight: 500;
+        }
+
+        .item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .social-icons i {
+            font-size: 20px;
+            color: #AE8625;
+        }
+
+        .social-icons i:hover {
+            background: linear-gradient(to right, #D3A745, #FAF49E);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .text {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 20px 0;
+            color: white;
+        }
+
+        .fa-brands {
+            font-size: 25px;
+            margin: 0 10px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .logo img {
+            width: 100%;
+            object-fit: cover;
+            height: 10vh;
+        }
+
+        .text span {
+            color: #AE8625;
+        }
+
+        @media only screen and (max-width:768px) {
+            .logo img {
+                width: 100%;
+                object-fit: cover;
+                height: 7vh;
+            }
+        }
+
+        @media only screen and (max-width:412px) {
+            .logo img {
+                width: 95%;
+                object-fit: cover;
+                height: 7vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://www.berrylush.com/cdn/shop/files/logo_berrylush_1_200x.png?v=1705128955" alt="">
+        </div>
+        <div class="social-icons">
+            <i class="fa-solid fa-user"></i>
+            <i class="fa-regular fa-heart"></i>
+            <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+    </nav>
+    <!-- Search bar and filter buttons -->
+    <div class="search-container">
+        <div class="item">
+            <input type="text" id="search-input" placeholder="Search product name here...">
+            <button id="search-btn">Search</button>
+        </div>
+        <div class="filters">
+            <button class="filter-btn" onclick="filterProducts('all')">All</button>
+            <button class="filter-btn" onclick="filterProducts('topwear')">Dresses</button>
+            <button class="filter-btn" onclick="filterProducts('bottomwear')">Tops</button>
+            <button class="filter-btn" onclick="filterProducts('jacket')">Coords</button>
+            <button class="filter-btn" onclick="filterProducts('watch')">Jumpsuits</button>
+        </div>
+    </div>
+
+    <!-- Products section -->
+    <div id="product-list" class="product-list">
+        <!-- Product cards will be inserted here via JavaScript -->
+    </div>
+    <footer class="footer">
+        <div class="text">
+            <p>© 2024 Berrylush. All Rights Reserved.Desidned By |<span>@Shimra Naaz</span></p>
+        </div>
+    </footer>
+    <script>
+        // Product data array
+        const products = [
+            { name: "Flare Mini Dress", category: "topwear", price: "₹3,690", img: "https://www.berrylush.com/cdn/shop/files/1_1f2a5ceb-a01a-4ee7-a038-76b2d61c50b9.jpg?v=1717485444&width=700" },
+
+            { name: "V-Neck Midi Dress", category: "topwear", price: "₹3,990", img: "https://www.berrylush.com/cdn/shop/products/5a39f6c0_1.jpg?v=1599976406&width=700" },
+
+            { name: "Neck Bell Sleeve Dress", category: "topwear", price: "₹3,940", img: "https://www.berrylush.com/cdn/shop/products/BeFunky-design_23.jpg?v=1628423282&width=700" },
+
+            { name: "Waist Crepe Dress", category: "topwear", price: "₹3,640", img: "https://www.berrylush.com/cdn/shop/products/1_9389833d-acf0-49f1-b2fe-00ccbbf26869.jpg?v=1665549146&width=700" },
+
+
+
+            { name: "Collar Neck Top", category: "bottomwear", price: "₹2,640", img: "https://www.berrylush.com/cdn/shop/files/1_4e255a76-32e9-4d41-a44e-67d71b221385.jpg?v=1712577892&width=700" },
+
+            { name: "Puff Sleeves Top", category: "bottomwear", price: "₹2,940", img: "https://www.berrylush.com/cdn/shop/files/1_0c87813d-e86a-4080-8a20-00c5cde74360.jpg?v=1711971528&width=700" },
+
+            { name: "Bishop Sleeve Top", category: "bottomwear", price: "₹2,740", img: "https://www.berrylush.com/cdn/shop/products/1_77598113-2388-4424-a26a-b70a88a7ab2e.jpg?v=1698831429&width=700" },
+
+            { name: "Quarter Sleeves Top", category: "bottomwear", price: "₹2,540", img: "https://www.berrylush.com/cdn/shop/products/1_970e209e-3936-4cb3-b914-fd761130b710.jpg?v=1688637743&width=700" },
+
+
+
+            { name: "Collar Neck Co-Ord Set", category: "jacket", price: "₹1,540", img: "https://www.berrylush.com/cdn/shop/files/1_43ee94c5-0095-4a79-89f7-382aedafe74b.jpg?v=1721734545&width=700" },
+
+            { name: "Neck Crop Co-Ord Set", category: "jacket", price: "₹2,540", img: "https://www.berrylush.com/cdn/shop/products/1_3d50b656-daff-4352-8786-3dddc2f8f55a.jpg?v=1709619294&width=600" },
+
+            { name: " Floral Print Co-ords", category: "jacket", price: "₹3,540", img: "https://www.berrylush.com/cdn/shop/files/1_7c965120-948b-4714-b63a-d174cea3749e.jpg?v=1721906081&width=700" },
+
+            { name: " Off-Shoulder Maxi Dress", category: "jacket", price: "₹2,840", img: "https://www.berrylush.com/cdn/shop/products/2_a89f2fed-d1a0-4757-9e45-e39cdeaef2c7.jpg?v=1596534092&width=700" },
+
+
+            { name: "Zipper-Up Jumpsuit", category: "watch", price: "₹1,740", img: "https://www.berrylush.com/cdn/shop/products/1_6240ec2d-8dc0-4971-9781-6a8f484e033f.jpg?v=1695881902&width=700" },
+
+            { name: " Straight Maxi Jumpsuit", category: "watch", price: "₹2,440", img: "https://www.berrylush.com/cdn/shop/files/1_4f68363e-5e7c-4df0-aa7b-9770096749a7.jpg?v=1722413879&width=700" },
+
+            { name: "Sleeveless Jumpsuit", category: "watch", price: "₹2,540", img: "https://www.berrylush.com/cdn/shop/files/1_ff695259-4e32-4bf4-bcef-48cab6b1c806.jpg?v=1724753958&width=700" },
+
+            { name: "Tie-Knot Jumpsuit", category: "watch", price: "₹1,840", img: "https://www.berrylush.com/cdn/shop/products/65ec1f64_front.jpg?v=1620987411&width=700" }
+        ];
+
+        // Display all products initially
+        window.onload = function () {
+            displayProducts(products);
+        }
+
+        // Function to display products
+        function displayProducts(productsToShow) {
+            const productList = document.getElementById("product-list");
+            productList.innerHTML = "";
+            productsToShow.forEach(product => {
+                productList.innerHTML += `
+            <div class="product-card">
+                <img src="${product.img}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.price}</p>
+            </div>
+        `;
+            });
+        }
+
+        // Function to filter products by category
+        function filterProducts(category) {
+            let filteredProducts;
+            if (category === 'all') {
+                filteredProducts = products;
+            } else {
+                filteredProducts = products.filter(product => product.category === category);
+            }
+            displayProducts(filteredProducts);
+        }
+
+        // Search functionality
+        document.getElementById('search-btn').addEventListener('click', function () {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+            displayProducts(filteredProducts);
+        });
+
+    </script>
+</body>
+
+</html>
